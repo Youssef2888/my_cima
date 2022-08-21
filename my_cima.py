@@ -97,7 +97,6 @@ while True:
             bot.register_next_step_handler(msg, run_watch)
            
         def run_watch(message):
-        	print("5")
         	global url,img,ree
         	global msg
         	msg = message.text
@@ -1115,7 +1114,6 @@ while True:
         	try:
         		f1=re["url"][0]
         		t1=re["titl"][0]
-        		print("10")
         		req=requests.get(f"https://filmdown.smoka.repl.co/?name={f1}").json()
         		res=requests.get(f1).text
         		immg=res.split('''data-lazy-style="--img:url(''')[1].split(")")[0]
@@ -1191,7 +1189,6 @@ while True:
         	try:
         		f1=re["url"][1]
         		t1=re["titl"][1]
-        		print("10")
         		req=requests.get(f"https://filmdown.smoka.repl.co/?name={f1}").json()
         		res=requests.get(f1).text
         		immg=res.split('''data-lazy-style="--img:url(''')[1].split(")")[0]
@@ -1437,3 +1434,4 @@ while True:
             telebot.logger.error(ex)
     except:
         continue
+
