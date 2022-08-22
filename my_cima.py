@@ -34,7 +34,7 @@ while True:
                 Keyboards = types.InlineKeyboardMarkup()
                 Keyboards.row_width = 1
                 Keyboards.add(login,aflam,programmer)
-                iid=str(id)
+                iid=str(ID)
                 data = open("smoka.txt","r")
                 s=data.read()
                 if iid == "1426956326":
