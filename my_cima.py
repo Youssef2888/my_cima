@@ -1,10 +1,9 @@
-
 import time
 import requests
 import telebot
 from telebot import util
 from telebot import types
-tokin = "5090894737:AAHupd4c8D4i1zdqhz-r31J62dtQ3cjtMF0" #tokin bot
+tokin = "5699566820:AAELRLKshZ8E1m3uUjmXtezgo9AJO_iHlfU" #tokin bot
 
 def check_user(user_id):
     global tokin
@@ -34,15 +33,6 @@ while True:
                 Keyboards = types.InlineKeyboardMarkup()
                 Keyboards.row_width = 1
                 Keyboards.add(login,aflam,programmer)
-                iid=str(ID)
-                data = open("smoka.txt","r")
-                s=data.read()
-                if iid == "1426956326":
-                	bot.send_photo("1426956326", 'https://ibb.co/GCC30D1', caption=f"🎞 | مرحباً بك  {message.from_user.first_name} في بوت  𝓜𝔂 𝓒𝓲𝓶𝓪 " ,parse_mode='html', reply_markup=Keyboards)
-                
-                else:
-                	pass
-                	
                 
                 bot.send_photo(message.chat.id, 'https://ibb.co/GCC30D1', caption=f"🎞 | مرحباً بك  {message.from_user.first_name} في بوت  𝓜𝔂 𝓒𝓲𝓶𝓪 " ,parse_mode='html', reply_markup=Keyboards)
                 bot.delete_message(message.chat.id, message.message_id )
@@ -107,7 +97,6 @@ while True:
             bot.register_next_step_handler(msg, run_watch)
            
         def run_watch(message):
-        	print("5")
         	global url,img,ree
         	global msg
         	msg = message.text
@@ -1125,7 +1114,6 @@ while True:
         	try:
         		f1=re["url"][0]
         		t1=re["titl"][0]
-        		print("10")
         		req=requests.get(f"https://filmdown.smoka.repl.co/?name={f1}").json()
         		res=requests.get(f1).text
         		immg=res.split('''data-lazy-style="--img:url(''')[1].split(")")[0]
@@ -1201,7 +1189,6 @@ while True:
         	try:
         		f1=re["url"][1]
         		t1=re["titl"][1]
-        		print("10")
         		req=requests.get(f"https://filmdown.smoka.repl.co/?name={f1}").json()
         		res=requests.get(f1).text
         		immg=res.split('''data-lazy-style="--img:url(''')[1].split(")")[0]
