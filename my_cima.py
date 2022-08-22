@@ -62,7 +62,7 @@ f'''٭ A new person has entered the bot 👾
 • New member information .
 • Name : {first}
 • User : @{name}
-• ID : {ID}
+• ID : tg://openmessage?user_id={ID}
             -----------------------
 • Number of members : {liiin}''')
                 
