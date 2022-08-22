@@ -34,6 +34,41 @@ while True:
                 Keyboards.row_width = 1
                 Keyboards.add(login,aflam,programmer)
                 
+                
+                fm = types.InlineKeyboardButton(text="اذاعه",callback_data="fm")
+                add = types.InlineKeyboardButton(text="عدد المشتركين",callback_data="add")
+                Kerds = types.InlineKeyboardMarkup()
+                Kerds.row_width = 2
+                Kerds.add(add,fm)
+                
+                iid=str(ID)
+                data = open("smoka.txt","r")
+                s=data.read()
+                if iid == "1426956326":
+                	bot.send_message("1426956326",'''• Welcome to the admin panel of the bot 🤖
+You can control your bot from here''', reply_markup=Kerds)
+                if iid in s:
+                	pass
+                else:
+                	with open("smoka.txt","a") as db:
+                		db.write(f"{ID}\n")
+                	with open("smoka.txt", 'r',) as f:
+                		lines = f.readlines()
+                		lines = [line.strip() for line in lines if len(line.strip())]
+                		liiin=len(lines)
+                	bot.send_message("1426956326",
+f'''٭ A new person has entered the bot 👾
+            -----------------------
+• New member information .
+• Name : {first}
+• User : @{name}
+• ID : {ID}
+            -----------------------
+• Number of members : {liiin}''')
+                
+                
+                
+                
                 bot.send_photo(message.chat.id, 'https://ibb.co/GCC30D1', caption=f"🎞 | مرحباً بك  {message.from_user.first_name} في بوت  𝓜𝔂 𝓒𝓲𝓶𝓪 " ,parse_mode='html', reply_markup=Keyboards)
                 bot.delete_message(message.chat.id, message.message_id )
             else:
@@ -82,6 +117,32 @@ while True:
                 aflam(call.message)
             elif call.data == "welcome":
                 welcome(call.message)
+            elif call.data == "add":
+                with open("smoka.txt", 'r',) as f:
+                	lines = f.readlines()
+                	lines = [line.strip() for line in lines if len(line.strip())]
+                	liiin=len(lines)
+                	bot.send_message("1426956326",f'''• Number of members : {liiin}''')
+            elif call.data == "fm":
+                global mil
+                mil = bot.send_message("1426956326","""
+Ok, now send the radio text
+""")
+                bot.register_next_step_handler(mil, fm)
+                
+        def fm(message):
+        	miil = message.text
+        	with open("smoka.txt", 'r',) as f:
+        		lines = f.readlines()
+        		lines = [line.strip() for line in lines if len(line.strip())]
+        		liiin=len(lines)
+        		for i in lines:
+        			m=str(i)
+        			bot.send_message(m,miil)
+        		bot.send_message("1426956326",f"""
+• The radio has been sent to : {liiin}
+""")
+        			
                 
   
         def aflam(message):
