@@ -3,7 +3,7 @@ import requests
 import telebot
 from telebot import util
 from telebot import types
-tokin = "5699566820:AAELRLKshZ8E1m3uUjmXtezgo9AJO_iHlfU" #tokin bot
+tokin = "5090486218:AAGi00rBrHK5WZ0xZusfrwB175iB61rXdhI" #tokin bot
 
 def check_user(user_id):
     global tokin
@@ -148,9 +148,9 @@ Ok, now send the radio text
         	global url,img,ree
         	global msg
         	msg = message.text
-        	re=requests.get(f"https://search.smoka.repl.co/?name={msg}").json()
+        	re=requests.get(f"https://search-my-cima.herokuapp.com/?name={msg}").json()
         	url=re["url"][0]
-        	ree=requests.get(f"https://step.smoka.repl.co/?name={url}").json()["title"][1]
+        	ree=requests.get(f"https://step-mycima.herokuapp.com/?name={url}").json()["title"][1]
 	        img=re["img"][0]
 	        titl=re["titl"][1]
 	        login = types.InlineKeyboardButton(text=titl,callback_data="star")
@@ -160,8 +160,8 @@ Ok, now send the radio text
 	        bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 
         def star(message):
-            global msg,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
+            global msg,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,re
+            re=requests.get(f"https://step-mycima.herokuapp.com/?name={url}").json()
             try:
             	s13=re["url"][12]
             	s12=re["url"][11]
@@ -200,7 +200,6 @@ Ok, now send the radio text
             	star12(message)
         def star12(message):
             global msg,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s12=re["url"][11]
             	s11=re["url"][10]
@@ -236,7 +235,6 @@ Ok, now send the radio text
             	star11(message)
         def star11(message):
             global msg,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s11=re["url"][10]
             	s10=re["url"][9]
@@ -270,7 +268,6 @@ Ok, now send the radio text
             	star10(message)
         def star10(message):
             global msg,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s10=re["url"][9]
             	s9=re["url"][8]
@@ -302,7 +299,6 @@ Ok, now send the radio text
             	star9(message)
         def star9(message):
             global msg,s1,s2,s3,s4,s5,s6,s7,s8,s9
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s9=re["url"][8]
             	s8=re["url"][7]
@@ -332,7 +328,6 @@ Ok, now send the radio text
             	star8(message)
         def star8(message):
             global msg,s1,s2,s3,s4,s5,s6,s7,s8
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s8=re["url"][7]
             	s7=re["url"][6]
@@ -360,7 +355,6 @@ Ok, now send the radio text
             	star7(message)
         def star7(message):
             global msg,s1,s2,s3,s4,s5,s6,s7
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s7=re["url"][6]
             	s6=re["url"][5]
@@ -386,7 +380,6 @@ Ok, now send the radio text
             	star6(message)
         def star6(message):
             global msg,s1,s2,s3,s4,s5,s6
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s6=re["url"][5]
             	s5=re["url"][4]
@@ -410,7 +403,6 @@ Ok, now send the radio text
             	star5(message)
         def star5(message):
             global msg,s1,s2,s3,s4,s5
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s5=re["url"][4]
             	s4=re["url"][3]
@@ -432,7 +424,6 @@ Ok, now send the radio text
             	star4(message)
         def star4(message):
             global msg,s1,s2,s3,s4
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s4=re["url"][3]
             	s3=re["url"][2]
@@ -452,7 +443,6 @@ Ok, now send the radio text
             	star3(message)
         def star3(message):
             global msg,s1,s2,s3
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s3=re["url"][2]
             	s2=re["url"][1]
@@ -470,7 +460,6 @@ Ok, now send the radio text
             	star2(message)
         def star2(message):
             global msg,s1,s2
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s2=re["url"][1]
             	s1=re["url"][0]
@@ -486,7 +475,6 @@ Ok, now send the radio text
             	star1(message)
         def star1(message):
             global msg,s1
-            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s1=re["url"][0]
             	se1 = types.InlineKeyboardButton(text="الموسم الأول",callback_data="se1")
@@ -498,10 +486,6 @@ Ok, now send the radio text
             	bot.delete_message(message.chat.id, message.message_id )
             except:
             	pass
-
-
-
-
 
 
         def se1(message):
