@@ -29,6 +29,7 @@ while True:
                 login = types.InlineKeyboardButton(text="🍿 مسلسلات ",callback_data="login")
                 aflam = types.InlineKeyboardButton(text="🕹 أفلام",callback_data="aflam")
                 programmer = types.InlineKeyboardButton(text=" 💻 مراسلة المطور",url="https://t.me/smoka28")
+                programmer2 = types.InlineKeyboardButton(text=" 💻 مراسلة المطور",url="https://t.me/VR_LA")
                 fm = types.InlineKeyboardButton(text="اذاعه",callback_data="fm")
                 add = types.InlineKeyboardButton(text="عدد المشتركين",callback_data="add")
                 Kerds = types.InlineKeyboardMarkup()
@@ -56,10 +57,9 @@ f'''٭ A new person has entered the bot 👾
 
                 Keyboards = types.InlineKeyboardMarkup()
                 Keyboards.row_width = 1
-                Keyboards.add(login,aflam,programmer)
+                Keyboards.add(login,aflam,programmer,programmer2)
                 
                 bot.send_photo(message.chat.id, 'https://ibb.co/GCC30D1', caption=f"🎞 | مرحباً بك  {message.from_user.first_name} في بوت  𝓜𝔂 𝓒𝓲𝓶𝓪 " ,parse_mode='html', reply_markup=Keyboards)
-                bot.delete_message(message.chat.id, message.message_id )
             else:
                 Keyboard = types.InlineKeyboardMarkup()
                 Keyboard.row_width = 1
@@ -205,7 +205,6 @@ Ok, now send the radio text
 		        		Keyboards.row_width = 1
 		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
 		        		pass
         
@@ -260,7 +259,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,se10,se11,se12,se13,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             	m=="1"
             except:
             	star12(message)
@@ -296,7 +294,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,se10,se11,se12,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star11(message)
         def star11(message):
@@ -329,7 +326,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,se10,se11,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star10(message)
         def star10(message):
@@ -360,7 +356,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,se10,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star9(message)
         def star9(message):
@@ -389,7 +384,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star8(message)
         def star8(message):
@@ -416,7 +410,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star7(message)
         def star7(message):
@@ -446,7 +439,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star6(message)
         def star6(message):
@@ -469,7 +461,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star5(message)
         def star5(message):
@@ -490,7 +481,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star4(message)
         def star4(message):
@@ -509,7 +499,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star3(message)
         def star3(message):
@@ -526,7 +515,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star2(message)
         def star2(message):
@@ -541,7 +529,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star1(message)
         def star1(message):
@@ -554,7 +541,6 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
-            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	pass
 
