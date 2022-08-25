@@ -87,7 +87,7 @@ f'''٭ A new person has entered the bot 👾
             elif call.data == "se5":
                 se5(call.message)
             elif call.data == "se6":
-                star(call.message)
+                se6(call.message)
             elif call.data == "se7":
                 se7(call.message)
             elif call.data == "se8":
@@ -143,6 +143,72 @@ Ok, now send the radio text
 🎬 | أدخل إسم المسلسل
 """)
             bot.register_next_step_handler(msg, run_watch)
+            
+            
+        def hlq(message):
+            global mshl,reyui
+            reyui = requests.get(f"https://hlqat.smoka.repl.co/?name={v}").json()["url"]
+            lio=len(reyui)
+            mshl = bot.reply_to(message,f"""
+ارسل رقم الحلقه المراد تحميلها من 1 الي {lio}
+""")
+            bot.register_next_step_handler(mshl, hlqat)
+            
+        def hlqat(message):
+        	mshl = message.text
+        	r= int(mshl)
+        	ss = r-1
+        	re = requests.get(f"https://hlqat.smoka.repl.co/?name={v}").json()["url"][ss]
+        	reer=requests.get(f"https://download.smoka.repl.co/?name={re}").json()["url"]
+        	rre=requests.get(s3).text
+        	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
+        	try:
+        		dow1=reer[0]
+        		q1=reer[1]
+        		dow2=reer[2]
+        		q2=reer[3]
+        		dow3=reer[4]
+        		q3=reer[5]
+        		fin = types.InlineKeyboardButton(text=f"{q1}",url=dow1)
+        		fin2 = types.InlineKeyboardButton(text=f"{q2}",url=dow2)
+        		fin3 = types.InlineKeyboardButton(text=f"{q3}",url=dow3)
+        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه اخري",callback_data="hlq")
+        		Keyboards = types.InlineKeyboardMarkup()
+        		Keyboards.row_width = 2
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
+        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+        		bot.delete_message(message.chat.id, message.message_id )
+        	except:
+        		try:
+	        		dow1=reer[0]
+	        		q1=reer[1]
+	        		dow2=reer[2]
+	        		q2=reer[3]
+	        		fin = types.InlineKeyboardButton(text=f"{q1}",url=dow1)
+	        		fin2 = types.InlineKeyboardButton(text=f"{q2}",url=dow2)
+	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه اخري",callback_data="hlq")
+	        		Keyboards = types.InlineKeyboardMarkup()
+	        		Keyboards.row_width = 1
+	        		Keyboards.add(fin,fin2,hlq,sers)
+	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+	        		bot.delete_message(message.chat.id, message.message_id )
+	        	except:
+	        		try:
+		        		dow1=reer[0]
+		        		q1=reer[1]
+		        		fin = types.InlineKeyboardButton(text=f"{q1}",url=dow1)
+		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه اخري",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(fin,hlq,sers)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
+		        	except:
+		        		pass
+        
            
         def run_watch(message):
         	global url,img,ree
@@ -355,6 +421,7 @@ Ok, now send the radio text
             	star7(message)
         def star7(message):
             global msg,s1,s2,s3,s4,s5,s6,s7
+            
             try:
             	s7=re["url"][6]
             	s6=re["url"][5]
@@ -371,6 +438,10 @@ Ok, now send the radio text
             	se6 = types.InlineKeyboardButton(text="الموسم السادس",callback_data="se6")
             	se7 = types.InlineKeyboardButton(text="الموسم السابع",callback_data="se7")
             	sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+            	
+            	
+            	
+            	
             	Keyboards = types.InlineKeyboardMarkup()
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,sers)
@@ -489,6 +560,8 @@ Ok, now send the radio text
 
 
         def se1(message):
+        	global v
+        	v = s1
         	re=requests.get(f"https://download.smoka.repl.co/?name={s1}").json()["url"]
         	rre=requests.get(s1).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -504,9 +577,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -518,9 +592,12 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+	        		
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -529,9 +606,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -539,6 +617,8 @@ Ok, now send the radio text
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
 
         def se2(message):
+        	global v
+        	v = s2
         	re=requests.get(f"https://download.smoka.repl.co/?name={s2}").json()["url"]
         	rre=requests.get(s2).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -554,9 +634,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -568,9 +649,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -579,9 +661,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,sers,hlq)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -589,6 +672,8 @@ Ok, now send the radio text
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
 
         def se3(message):
+        	global v
+        	v = s3
         	re=requests.get(f"https://download.smoka.repl.co/?name={s3}").json()["url"]
         	rre=requests.get(s3).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -604,9 +689,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -618,9 +704,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -629,9 +716,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -639,6 +727,8 @@ Ok, now send the radio text
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
 
         def se4(message):
+        	global v
+        	v = s4
         	re=requests.get(f"https://download.smoka.repl.co/?name={s4}").json()["url"]
         	rre=requests.get(s4).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -654,9 +744,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -668,9 +759,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -679,9 +771,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -689,6 +782,8 @@ Ok, now send the radio text
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
 
         def se5(message):
+        	global v
+        	v = s5
         	re=requests.get(f"https://download.smoka.repl.co/?name={s5}").json()["url"]
         	rre=requests.get(s5).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -704,9 +799,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -718,9 +814,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -729,9 +826,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -739,8 +837,11 @@ Ok, now send the radio text
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
 
         def se6(message):
+        	global v
+        	v = s6
         	re=requests.get(f"https://download.smoka.repl.co/?name={s6}").json()["url"]
         	rre=requests.get(s6).text
+        	print(re)
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
         	
         	try:
@@ -754,9 +855,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -768,9 +870,11 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
+	        		print("50")
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -779,9 +883,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -789,6 +894,8 @@ Ok, now send the radio text
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
 
         def se7(message):
+        	global v
+        	v = s7
         	re=requests.get(f"https://download.smoka.repl.co/?name={s7}").json()["url"]
         	rre=requests.get(s7).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -804,9 +911,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -818,9 +926,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -829,9 +938,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -840,6 +950,8 @@ Ok, now send the radio text
 
 
         def se8(message):
+        	global v
+        	v = s8
         	re=requests.get(f"https://download.smoka.repl.co/?name={s8}").json()["url"]
         	rre=requests.get(s8).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -855,9 +967,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -869,9 +982,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -880,9 +994,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -890,6 +1005,8 @@ Ok, now send the radio text
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
 
         def se9(message):
+        	global v
+        	v = s9
         	re=requests.get(f"https://download.smoka.repl.co/?name={s9}").json()["url"]
         	rre=requests.get(s9).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -905,9 +1022,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -919,9 +1037,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -930,9 +1049,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -940,6 +1060,8 @@ Ok, now send the radio text
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
 
         def se10(message):
+        	global v
+        	v = s10
         	re=requests.get(f"https://download.smoka.repl.co/?name={s10}").json()["url"]
         	rre=requests.get(s10).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -955,9 +1077,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -969,9 +1092,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -980,15 +1104,18 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
 		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
         def se11(message):
+        	global v
+        	v = s11
         	re=requests.get(f"https://download.smoka.repl.co/?name={s11}").json()["url"]
         	rre=requests.get(s11).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -1004,9 +1131,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -1018,9 +1146,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -1029,15 +1158,18 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
 		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
         def se12(message):
+        	global v
+        	v = s12
         	re=requests.get(f"https://download.smoka.repl.co/?name={s12}").json()["url"]
         	rre=requests.get(s12).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -1053,9 +1185,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -1067,9 +1200,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -1078,9 +1212,10 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
@@ -1088,6 +1223,8 @@ Ok, now send the radio text
 ⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
 
         def se13(message):
+        	global v
+        	v = s13
         	re=requests.get(f"https://download.smoka.repl.co/?name={s13}").json()["url"]
         	rre=requests.get(s13).text
         	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
@@ -1103,9 +1240,10 @@ Ok, now send the radio text
         		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
-        		Keyboards.add(fin,fin2,fin3,sers)
+        		Keyboards.add(fin,fin2,fin3,hlq,sers)
         		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
@@ -1117,9 +1255,10 @@ Ok, now send the radio text
 	        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
-	        		Keyboards.add(fin,fin2,sers)
+	        		Keyboards.add(fin,fin2,hlq,sers)
 	        		bot.send_photo(message.chat.id, imga, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
@@ -1128,10 +1267,11 @@ Ok, now send the radio text
 		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"الموسم كامل بجودة {q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
 		        		
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
-		        		Keyboards.add(fin,sers)
+		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
