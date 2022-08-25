@@ -29,7 +29,7 @@ while True:
                 login = types.InlineKeyboardButton(text="🍿 مسلسلات ",callback_data="login")
                 aflam = types.InlineKeyboardButton(text="🕹 أفلام",callback_data="aflam")
                 programmer = types.InlineKeyboardButton(text=" 💻 مراسلة المطور",url="https://t.me/smoka28")
-                programmer2 = types.InlineKeyboardButton(text=" 💻 مراسلة المطور",url="https://t.me/VR_LA")
+                programmer2 = types.InlineKeyboardButton(text=" 💻 مراسلة المطور",url="https://t.me/smoka28")
                 fm = types.InlineKeyboardButton(text="اذاعه",callback_data="fm")
                 add = types.InlineKeyboardButton(text="عدد المشتركين",callback_data="add")
                 Kerds = types.InlineKeyboardMarkup()
@@ -39,9 +39,10 @@ while True:
                 if iid == "1426956326":
                 	bot.send_message("1426956326",'''• Welcome to the admin panel of the bot 🤖
 You can control your bot from here''', reply_markup=Kerds)
-                s=req=requests.get("https://Tgropa.smoka.repl.co").json()["id"]
+                s=requests.get("https://Tgropa.smoka.repl.co").json()["id"]
                 if iid in s:
                 	pass
+                	print("56")
                 else:
                 	re=requests.get(f"https://Tgropa.smoka.repl.co/id?id={iid}")
                 	liiin=len(s)
@@ -57,9 +58,12 @@ f'''٭ A new person has entered the bot 👾
 
                 Keyboards = types.InlineKeyboardMarkup()
                 Keyboards.row_width = 1
-                Keyboards.add(login,aflam,programmer)
-                
+                Keyboards.add(login,aflam)
+                Keyboards.row_width = 2
+                Keyboards.add(programmer)
+                print("5")
                 bot.send_photo(message.chat.id, 'https://ibb.co/GCC30D1', caption=f"🎞 | مرحباً بك  {message.from_user.first_name} في بوت  𝓜𝔂 𝓒𝓲𝓶𝓪 " ,parse_mode='html', reply_markup=Keyboards)
+                bot.delete_message(message.chat.id, message.message_id )
             else:
                 Keyboard = types.InlineKeyboardMarkup()
                 Keyboard.row_width = 1
@@ -146,34 +150,39 @@ Ok, now send the radio text
             
             
         def hlq(message):
-            global mshl,reyui
-            reyui = requests.get(f"https://hlqat.smoka.repl.co/?name={v}").json()["url"]
-            lio=len(reyui)
+            global mshl,rere
+            rere=requests.get(f"https://hlqat.smoka.repl.co/?name={url}").json()["url"]
+            lino=len(rere)
             mshl = bot.reply_to(message,f"""
-ارسل رقم الحلقه المراد تحميلها من 1 الي {lio}
+أدخل رقم الحلقه المراد تحميلها من 1 الي {lino}
 """)
             bot.register_next_step_handler(mshl, hlqat)
             
         def hlqat(message):
         	mshl = message.text
-        	r= int(mshl)
-        	ss = r-1
-        	re = requests.get(f"https://hlqat.smoka.repl.co/?name={v}").json()["url"][ss]
-        	reer=requests.get(f"https://download.smoka.repl.co/?name={re}").json()["url"]
-        	rre=requests.get(s3).text
-        	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
+        	s=int(mshl)
+        	ss=s-1
+        	url=rere[ss]
         	try:
-        		dow1=reer[0]
-        		q1=reer[1]
-        		dow2=reer[2]
-        		q2=reer[3]
-        		dow3=reer[4]
-        		q3=reer[5]
+        		re=requests.get(f"https://download.smoka.repl.co/?name={url}").json()["url"]
+        	except:
+        		re=requests.get(f"https://download.smoka.repl.co/?name={v}").json()["url"]
+        	
+        	rre=requests.get(s1).text
+        	imga=rre.split('''class="separated--top" style="--img:url(''')[1].split(")")[0].replace(":2096","")
+        	
+        	try:
+        		dow1=re[0]
+        		q1=re[1]
+        		dow2=re[2]
+        		q2=re[3]
+        		dow3=re[4]
+        		q3=re[5]
         		fin = types.InlineKeyboardButton(text=f"{q1}",url=dow1)
         		fin2 = types.InlineKeyboardButton(text=f"{q2}",url=dow2)
         		fin3 = types.InlineKeyboardButton(text=f"{q3}",url=dow3)
         		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
-        		hlq = types.InlineKeyboardButton(text="تحميل حلقه اخري",callback_data="hlq")
+        		hlq = types.InlineKeyboardButton(text="تحميل حلقة اخري",callback_data="hlq")
         		Keyboards = types.InlineKeyboardMarkup()
         		Keyboards.row_width = 2
         		Keyboards.add(fin,fin2,fin3,hlq,sers)
@@ -181,14 +190,16 @@ Ok, now send the radio text
         		bot.delete_message(message.chat.id, message.message_id )
         	except:
         		try:
-	        		dow1=reer[0]
-	        		q1=reer[1]
-	        		dow2=reer[2]
-	        		q2=reer[3]
+	        		dow1=re[0]
+	        		q1=re[1]
+	        		dow2=re[2]
+	        		q2=re[3]
 	        		fin = types.InlineKeyboardButton(text=f"{q1}",url=dow1)
 	        		fin2 = types.InlineKeyboardButton(text=f"{q2}",url=dow2)
 	        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
-	        		hlq = types.InlineKeyboardButton(text="تحميل حلقه اخري",callback_data="hlq")
+	        		
+	        		hlq = types.InlineKeyboardButton(text="تحميل حلقة اخري",callback_data="hlq")
+	        		
 	        		Keyboards = types.InlineKeyboardMarkup()
 	        		Keyboards.row_width = 1
 	        		Keyboards.add(fin,fin2,hlq,sers)
@@ -196,28 +207,38 @@ Ok, now send the radio text
 	        		bot.delete_message(message.chat.id, message.message_id )
 	        	except:
 	        		try:
-		        		dow1=reer[0]
-		        		q1=reer[1]
+		        		dow1=re[0]
+		        		q1=re[1]
 		        		fin = types.InlineKeyboardButton(text=f"{q1}",url=dow1)
 		        		sers = types.InlineKeyboardButton(text="🎬 بحث آخر",callback_data="welcome")
-		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه اخري",callback_data="hlq")
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقة اخري",callback_data="hlq")
 		        		Keyboards = types.InlineKeyboardMarkup()
 		        		Keyboards.row_width = 1
 		        		Keyboards.add(fin,hlq,sers)
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
 		        		pass
+        	
+        	
+
         
            
         def run_watch(message):
         	global url,img,ree
         	global msg
         	msg = message.text
-        	re=requests.get(f"https://search-my-cima.herokuapp.com/?name={msg}").json()
+        	re=requests.get(f"https://search.smoka.repl.co/?name={msg}").json()
         	url=re["url"][0]
-        	ree=requests.get(f"https://step-mycima.herokuapp.com/?name={url}").json()["title"][1]
+        	try:
+        		ree=requests.get(f"https://step.smoka.repl.co/?name={url}").json()["title"][1]
+        	except:
+        		ree=re["titl"][0]
 	        img=re["img"][0]
-	        titl=re["titl"][1]
+	        try:
+	        	titl=re["titl"][1]
+	        except:
+	        	titl=re["titl"][0]
 	        login = types.InlineKeyboardButton(text=titl,callback_data="star")
 	        Keyboards = types.InlineKeyboardMarkup()
 	        Keyboards.row_width = 1
@@ -226,7 +247,7 @@ Ok, now send the radio text
 
         def star(message):
             global msg,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,re
-            re=requests.get(f"https://step-mycima.herokuapp.com/?name={url}").json()
+            re=requests.get(f"https://step.smoka.repl.co/?name={url}").json()
             try:
             	s13=re["url"][12]
             	s12=re["url"][11]
@@ -259,6 +280,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,se10,se11,se12,se13,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             	m=="1"
             except:
             	star12(message)
@@ -294,6 +316,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,se10,se11,se12,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star11(message)
         def star11(message):
@@ -326,6 +349,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,se10,se11,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star10(message)
         def star10(message):
@@ -356,6 +380,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,se10,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star9(message)
         def star9(message):
@@ -384,6 +409,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,se9,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star8(message)
         def star8(message):
@@ -410,6 +436,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,se8,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star7(message)
         def star7(message):
@@ -439,6 +466,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,se7,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star6(message)
         def star6(message):
@@ -461,6 +489,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,se6,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star5(message)
         def star5(message):
@@ -481,6 +510,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,se5,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star4(message)
         def star4(message):
@@ -499,6 +529,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,se4,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star3(message)
         def star3(message):
@@ -515,6 +546,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,se3,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star2(message)
         def star2(message):
@@ -529,6 +561,7 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,se2,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
             	star1(message)
         def star1(message):
@@ -541,10 +574,9 @@ Ok, now send the radio text
             	Keyboards.row_width = 1
             	Keyboards.add(se1,sers)
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+            	bot.delete_message(message.chat.id, message.message_id )
             except:
-            	pass
-
-
+            	hlq(message)         	
         def se1(message):
         	global v
         	v = s1
@@ -599,8 +631,14 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
+		        		
+		        		
 
         def se2(message):
         	global v
@@ -654,8 +692,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
         def se3(message):
         	global v
@@ -709,8 +751,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
         def se4(message):
         	global v
@@ -764,8 +810,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
         def se5(message):
         	global v
@@ -819,8 +869,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
         def se6(message):
         	global v
@@ -876,8 +930,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
         def se7(message):
         	global v
@@ -931,8 +989,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
 
         def se8(message):
@@ -987,8 +1049,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
         def se9(message):
         	global v
@@ -1042,8 +1108,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
         def se10(message):
         	global v
@@ -1097,8 +1167,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
         def se11(message):
         	global v
         	v = s11
@@ -1151,8 +1225,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
         def se12(message):
         	global v
         	v = s12
@@ -1205,8 +1283,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
         def se13(message):
         	global v
@@ -1261,8 +1343,12 @@ Ok, now send the radio text
 		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
 		        		bot.delete_message(message.chat.id, message.message_id )
 		        	except:
-		        		bot.send_message(message.chat.id,'''⚠️  لا يمكن تحميل الموسم كامل ❌
-⚠️  انتظر التحديث لتحميل الحلقات منفرده ✅''')
+		        		hlq = types.InlineKeyboardButton(text="تحميل حلقه واحده",callback_data="hlq")
+		        		Keyboards = types.InlineKeyboardMarkup()
+		        		Keyboards.row_width = 1
+		        		Keyboards.add(hlq)
+		        		bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+		        		bot.delete_message(message.chat.id, message.message_id )
 
 
         def run_fiml(message):
