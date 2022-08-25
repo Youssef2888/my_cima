@@ -57,7 +57,7 @@ f'''٭ A new person has entered the bot 👾
 
                 Keyboards = types.InlineKeyboardMarkup()
                 Keyboards.row_width = 1
-                Keyboards.add(login,aflam,programmer,programmer2)
+                Keyboards.add(login,aflam,programmer)
                 
                 bot.send_photo(message.chat.id, 'https://ibb.co/GCC30D1', caption=f"🎞 | مرحباً بك  {message.from_user.first_name} في بوت  𝓜𝔂 𝓒𝓲𝓶𝓪 " ,parse_mode='html', reply_markup=Keyboards)
             else:
