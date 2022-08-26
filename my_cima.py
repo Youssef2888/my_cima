@@ -151,7 +151,7 @@ Ok, now send the radio text
             
         def hlq(message):
             global mshl,rere
-            rere=requests.get(f"https://hlqat.smoka.repl.co/?name={url}").json()["url"]
+            rere=requests.get(f"https://hlqat.smoka.repl.co/?name={v}").json()["url"]
             lino=len(rere)
             mshl = bot.reply_to(message,f"""
 أدخل رقم الحلقه المراد تحميلها من 1 الي {lino}
