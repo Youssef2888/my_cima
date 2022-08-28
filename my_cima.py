@@ -151,7 +151,7 @@ Ok, now send the radio text
             
         def hlq(message):
             global mshl,rere
-            rere=requests.get(f"https://hlqat.smoka.repl.co/?name={v}").json()["url"]
+            rere=requests.get(f"https://hlqat.smoka.repl.co/?name={url}").json()["url"]
             lino=len(rere)
             mshl = bot.reply_to(message,f"""
 أدخل رقم الحلقه المراد تحميلها من 1 الي {lino}
@@ -227,23 +227,26 @@ Ok, now send the radio text
         def run_watch(message):
         	global url,img,ree
         	global msg
-        	msg = message.text
-        	re=requests.get(f"https://search.smoka.repl.co/?name={msg}").json()
-        	url=re["url"][0]
         	try:
-        		ree=requests.get(f"https://step.smoka.repl.co/?name={url}").json()["title"][1]
+	        	msg = message.text
+	        	re=requests.get(f"https://search.smoka.repl.co/?name={msg}").json()
+	        	url=re["url"][0]
+	        	try:
+	        		ree=requests.get(f"https://step.smoka.repl.co/?name={url}").json()["title"][1]
+	        	except:
+	        		ree=re["titl"][0]
+		        img=re["img"][0]
+		        try:
+		        	titl=re["titl"][1]
+		        except:
+		        	titl=re["titl"][0]
+		        login = types.InlineKeyboardButton(text=titl,callback_data="star")
+		        Keyboards = types.InlineKeyboardMarkup()
+		        Keyboards.row_width = 1
+		        Keyboards.add(login)
+		        bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
         	except:
-        		ree=re["titl"][0]
-	        img=re["img"][0]
-	        try:
-	        	titl=re["titl"][1]
-	        except:
-	        	titl=re["titl"][0]
-	        login = types.InlineKeyboardButton(text=titl,callback_data="star")
-	        Keyboards = types.InlineKeyboardMarkup()
-	        Keyboards.row_width = 1
-	        Keyboards.add(login)
-	        bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
+        		bot.send_message(message.chat.id, text=f"<strong>لم أستطع العثور على بحثك في سيما❗</strong>",parse_mode="html")
 
         def star(message):
             global msg,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,re
@@ -576,7 +579,7 @@ Ok, now send the radio text
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
             	bot.delete_message(message.chat.id, message.message_id )
             except:
-            	bot.send_message(message.chat.id, text=f"<strong>لم أستطع العثور على بحثك في سيما❗</strong>",parse_mode="html")
+            	hlq(message)         	
         def se1(message):
         	global v
         	v = s1
