@@ -18,7 +18,7 @@ while True:
     try:
         bot = telebot.TeleBot(tokin)
         @bot.message_handler(commands=['start'])
-        def welcome(message):
+        def welcomeo(message):
             name = message.from_user.username 
             ID = message.chat.id
             first = message.from_user.first_name
@@ -63,13 +63,48 @@ f'''٭ A new person has entered the bot 👾
                 Keyboards.add(programmer)
                 print("5")
                 bot.send_photo(message.chat.id, 'https://ibb.co/GCC30D1', caption=f"🎞 | مرحباً بك  {message.from_user.first_name} في بوت  𝓜𝔂 𝓒𝓲𝓶𝓪 " ,parse_mode='html', reply_markup=Keyboards)
-                bot.delete_message(message.chat.id, message.message_id )
+                
             else:
                 Keyboard = types.InlineKeyboardMarkup()
                 Keyboard.row_width = 1
                 Keyboard.add(channel)
                 bot.reply_to(message,text=f"مرحبا {message.from_user.first_name} \n من فضلك اشترك بقناه المطور ثم حاول تشغيل البوت مجددا /start",reply_markup=Keyboard)
 
+
+
+        def welcome(message):
+            name = message.from_user.username 
+            ID = message.chat.id
+            first = message.from_user.first_name
+            channel = types.InlineKeyboardButton(
+                text="Channel Developer ",
+                url="https://t.me/SMOKA_28")
+            if check_user(message.from_user.id):
+                login = types.InlineKeyboardButton(text="🍿 مسلسلات ",callback_data="login")
+                aflam = types.InlineKeyboardButton(text="🕹 أفلام",callback_data="aflam")
+                programmer = types.InlineKeyboardButton(text=" 💻 مراسلة المطور",url="https://t.me/smoka28")
+                programmer2 = types.InlineKeyboardButton(text=" 💻 مراسلة المطور",url="https://t.me/smoka28")
+                fm = types.InlineKeyboardButton(text="اذاعه",callback_data="fm")
+                add = types.InlineKeyboardButton(text="عدد المشتركين",callback_data="add")
+                Kerds = types.InlineKeyboardMarkup()
+                Kerds.row_width = 2
+                Kerds.add(add,fm)
+                iid=str(ID)
+                
+
+                Keyboards = types.InlineKeyboardMarkup()
+                Keyboards.row_width = 1
+                Keyboards.add(login,aflam)
+                Keyboards.row_width = 2
+                Keyboards.add(programmer)
+                print("5")
+                bot.send_photo(message.chat.id, 'https://ibb.co/GCC30D1', caption=f"🎞 | مرحباً بك  {message.from_user.first_name} في بوت  𝓜𝔂 𝓒𝓲𝓶𝓪 " ,parse_mode='html', reply_markup=Keyboards)
+                bot.delete_message(message.chat.id, message.message_id )
+            else:
+                Keyboard = types.InlineKeyboardMarkup()
+                Keyboard.row_width = 1
+                Keyboard.add(channel)
+                bot.reply_to(message,text=f"مرحبا {message.from_user.first_name} \n من فضلك اشترك بقناه المطور ثم حاول تشغيل البوت مجددا /start",reply_markup=Keyboard)
         @bot.callback_query_handler(func=lambda call: True)
         def bot_query_handler(call):
             if call.data == "login":
