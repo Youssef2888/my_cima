@@ -576,7 +576,7 @@ Ok, now send the radio text
             	bot.send_photo(message.chat.id, img, caption=ree ,parse_mode='html', reply_markup=Keyboards)
             	bot.delete_message(message.chat.id, message.message_id )
             except:
-            	hlq(message)         	
+            	bot.send_message(message.chat.id, text=f"<strong>لم أستطع العثور على بحثك في سيما❗</strong>",parse_mode="html")
         def se1(message):
         	global v
         	v = s1
