@@ -2,6 +2,7 @@ import time
 import requests
 import telebot
 from telebot import util
+from bs4 import BeautifulSoup
 from telebot import types
 tokin = "5699566820:AAELRLKshZ8E1m3uUjmXtezgo9AJO_iHlfU" #tokin bot
 
@@ -186,7 +187,23 @@ Ok, now send the radio text
             
         def hlq(message):
             global mshl,rere
-            rere=requests.get(f"https://hlqat.smoka.repl.co/?name={url}").json()["url"]
+            
+            re=requests.get(v)
+            soup = BeautifulSoup(re.text,"html.parser")
+            getUrlAction = str(soup.find_all("div",{ "class":"Episodes--Seasons--Episodes"}))
+            bs = BeautifulSoup(getUrlAction,"html.parser")
+            li = []
+            rere = []
+            for link in bs.findAll('a'):
+            	lin=(link.get("href"))
+            	li.append(lin)
+            lin=len(li)
+            s = lin
+            for i in range(int(lin)):
+            	lin-=1
+            	m=li[lin]
+            	rere.append(m)
+            
             lino=len(rere)
             mshl = bot.reply_to(message,f"""
 أدخل رقم الحلقه المراد تحميلها من 1 الي {lino}
