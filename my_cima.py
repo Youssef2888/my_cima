@@ -4,7 +4,7 @@ import telebot
 from telebot import util
 from bs4 import BeautifulSoup
 from telebot import types
-tokin = "5699566820:AAELRLKshZ8E1m3uUjmXtezgo9AJO_iHlfU" #tokin bot
+tokin = "" #tokin bot
 
 def check_user(user_id):
     global tokin
